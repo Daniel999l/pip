@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pip</title>
+<meta name="description" content="Pip is an AI learning to talk, out in the open. Every lesson is a transaction on Robinhood Chain, and anyone can watch it grow.">
+<meta name="theme-color" content="#f4f1ea">
+<link rel="icon" type="image/svg+xml" href="/pip.svg">
+<link rel="apple-touch-icon" href="/pip.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pip">
+<meta property="og:title" content="Pip, an AI learning to talk in the open">
+<meta property="og:description" content="Every lesson is a transaction that makes it a little smarter. Teach it your own sentence.">
+<meta property="og:url" content="https://pipsays.fun">
+<meta property="og:image" content="https://pipsays.fun/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pipsays.fun/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
+  <symbol id="logo" viewBox="0 0 400 400"><rect x="122" y="96" width="46" height="232" rx="23" fill="#121212"/><circle cx="214" cy="170" r="74" fill="none" stroke="#121212" stroke-width="46"/><circle cx="214" cy="170" r="27" fill="#ff4d2e"/></symbol>
+  <symbol id="copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M5 15V5a2 2 0 0 1 2-2h8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+</svg>
+
+<div class="wrap">
+  <nav>
+    <a class="brand" href="#top" aria-label="Pip home"><svg><use href="#logo"/></svg>pip</a>
+    <div class="links">
+      <a class="l" href="#talk">Talk</a>
+      <a class="l" href="#grow">Growth</a>
+      <a class="l" href="#teach">Teach</a>
+      <a class="l" href="#lessons">Lessons</a>
+      <a class="ghicon" href="https://x.com/pipsaysfun" target="_blank" rel="noopener" aria-label="Pip on X" title="Pip on X"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M18.9 2H22l-7.6 8.7L23.3 22h-7l-5.5-7.2L4.5 22H1.4l8.1-9.3L1 2h7.2l5 6.6L18.9 2zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20z"/></svg></a>
+      <a class="ghicon" data-gh href="#token" aria-label="Pip on GitHub" title="Pip on GitHub"><svg><use href="#gh"/></svg></a>
+      <a class="btn" id="navBuy" href="#token">Buy $PIP</a>
+    </div>
+  </nav>
+
+  <div class="hero" id="talk">
+    <div>
+      <h1 id="top">An AI learning<br>to talk, out<br>in the open<span class="eye">.</span></h1>
+      <p class="sub">Pip was born knowing nothing. Every lesson is a transaction that makes it a little smarter, and anyone can watch it grow.</p>
+      <div class="speech">
+        <div class="who"><b>Pip says</b><span id="afterLesson"></span></div>
+        <div class="said" id="saidBox"><span class="pr" id="saidPrompt"></span><span id="said"></span><span class="cursor"></span></div>
+        <form class="row" id="speakForm" autocomplete="off">
+          <input id="prompt" placeholder="Start a sentence for Pip..." maxlength="40" aria-label="Start a sentence for Pip">
+          <button class="btn" id="again" type="submit">Say something</button>
+        </form>
+        <div class="verify" id="verifyWrap" hidden>
+          <button type="button" class="linkbtn" id="verifyBtn">Check this on the contract</button>
+          <div class="verifybox" id="verifyBox" hidden></div>
+        </div>
+      </div>
+    </div>
+    <div class="markbox">
+      <svg viewBox="0 0 400 400" aria-hidden="true" id="bigEye">
+        <rect x="122" y="96" width="46" height="232" rx="23" fill="#121212"/>
+        <circle cx="214" cy="170" r="74" fill="none" stroke="#121212" stroke-width="46"/>
+        <g class="pupil" id="pupil"><circle cx="214" cy="170" r="27" fill="#ff4d2e"/><circle cx="222" cy="162" r="9" fill="#f4f1ea"/></g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="k">Lessons learned</div><div class="v" id="sLessons">-</div></div>
+    <div class="stat"><div class="k">Right-letter chance</div><div class="v" id="sLevel">-</div><div class="meter"><i id="sMeter" style="width:0%"></i></div></div>
+    <div class="stat"><div class="k">Lunch money left</div><div class="v" id="sLeft">-</div><div class="fine" id="sBal"></div></div>
+    <div class="stat"><div class="k">Next lesson in</div><div class="v" id="sNext">-</div><div class="fine" id="sQueue"></div></div>
+  </div>
+
+  <section id="grow">
+    <div class="eyebrow">Growing up</div>
+    <h2>From noise to words.</h2>
+    <p class="lead">These are Pip's real words at each stage. Nobody edits them. They come straight out of its brain on the chain.</p>
+    <div class="growth" id="growth"></div>
+  </section>
+
+  <section id="how">
+    <div class="eyebrow">How it works</div>
+    <h2>You raise it together.</h2>
+    <div class="how">
+      <div class="card"><div class="num">1</div><h3>Trades feed it</h3><p>Trading fees become Pip's lunch money. More trading means more lessons and a faster learner.</p></div>
+      <div class="card"><div class="num">2</div><h3>Every lesson is public</h3><p>Pip reads a few words, updates its own brain and saves it on the chain. Each lesson links to its transaction, so anyone can check it.</p></div>
+      <div class="card"><div class="num">3</div><h3>Burn to teach it</h3><p>Burn $PIP, write a sentence, and Pip learns your exact words next. Your address goes in its lesson log forever.</p></div>
+    </div>
+    <div class="oss">
+      <svg class="osslogo"><use href="#gh"/></svg>
+      <div class="osstext"><b>Pip is fully open source.</b><span>Read the code on GitHub. The brain, the teacher and this site are all public.</span></div>
+      <a class="btn ghost" data-gh-btn href="#token"><svg class="i"><use href="#gh"/></svg><span>Read the code</span></a>
+    </div>
+  </section>
+
+  <section id="teach">
+    <div class="eyebrow">Burn to teach</div>
+    <h2>Teach Pip your words.</h2>
+    <p class="lead">Burn some $PIP and Pip learns your sentence next, before its usual reading. Your burn and your words stay on the chain for good.</p>
+    <div class="teachgrid">
+      <form class="card teach" id="teachForm" autocomplete="off" novalidate>
+        <div class="walletbar">
+          <div class="wl">
+            <div class="wk">Your wallet</div>
+            <div class="wv" id="walletAddr">Not connected</div>
+          </div>
+          <button class="btn ghost" type="button" id="connectBtn">Connect wallet</button>
+        </div>
+        <div class="step">
+          <div class="num">1</div>
+          <div class="sb">
+            <h3>Write your sentence</h3>
+            <p>Plain letters, spaces and . , ' ? ! only. Pip learns it exactly as you write it.</p>
+            <textarea class="field" id="teachText" rows="3" placeholder="the little bird sang a happy song." aria-label="Your sentence"></textarea>
+            <div class="counter"><span id="teachCount">0</span> / <span id="teachMax">120</span></div>
+          </div>
+        </div>
+        <div class="step last">
+          <div class="num red">2</div>
+          <div class="sb">
+            <h3>Burn <span id="burnAmt">-</span> $PIP and teach</h3>
+            <p>Your wallet burns the $PIP, then asks you to sign so we know the burn is yours. Burned tokens are gone for good.</p>
+            <div class="teachfoot">
+              <button class="btn red" type="submit" id="teachBtn">Burn and teach</button>
+              <button class="linkbtn" type="button" id="useOldBtn">Already burned? Use an existing burn</button>
+            </div>
+            <div class="oldburn" id="oldBurn" hidden>
+              <p>Paste the hash of a burn you made from this wallet in the last 3 days. Burns go to this address:</p>
+              <div class="ca light"><span id="deadAddr">-</span><button type="button" class="copy" id="copyDead"><svg class="i"><use href="#copy"/></svg>Copy</button></div>
+              <div class="oldrow">
+                <input class="field mono" id="txHash" placeholder="0x..." spellcheck="false" maxlength="80" aria-label="Burn transaction hash">
+                <button class="btn" type="button" id="oldBtn">Sign and teach</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="msg" id="teachMsg" role="status" aria-live="polite"></div>
+      </form>
+      <div class="card queue">
+        <div class="qhead"><h3>Next in class</h3><span class="fine" id="qCount"></span></div>
+        <p class="qsub">Holder sentences Pip will learn next, in order.</p>
+        <ol class="qlist" id="queue"></ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="lessons">
+    <div class="eyebrow">Lesson log</div>
+    <h2>Every lesson, on the record.</h2>
+    <p class="lead">Each row is one lesson. Tap the link to see its transaction on the explorer.</p>
+    <div class="log" id="log"></div>
+    <div class="more"><button class="btn ghost" id="moreBtn" type="button" hidden>Load more lessons</button></div>
+  </section>
+
+  <section class="token" id="token">
+    <div class="tokmain">
+      <div class="eyebrow">$PIP on Robinhood Chain</div>
+      <h2>Feed Pip.</h2>
+      <p class="lead">Trading fees become Pip's lunch money. Every trade buys it more lessons.</p>
+      <div class="label">Token contract</div>
+      <div class="ca light"><span id="caText">Contract address not deployed yet</span><button type="button" class="copy" id="copyCa" disabled><svg class="i"><use href="#copy"/></svg>Copy</button></div>
+      <div class="label">Pip's brain</div>
+      <div class="brainrow"><a id="brainLink" class="mono">Brain contract not deployed yet</a><span class="fine">Anyone can read Pip's brain.</span></div>
+    </div>
+    <div class="tokside">
+      <a class="btn red big" id="buyBtn" aria-disabled="true">Buy on Pons</a>
+      <div class="fine" id="buyNote">Buying opens at launch.</div>
+      <a class="btn ghost" data-gh-btn href="#token"><svg class="i"><use href="#gh"/></svg><span>Read the code</span></a>
+    </div>
+  </section>
+
+  <footer>
+    <a class="brand" href="#top"><svg><use href="#logo"/></svg>pip</a>
+    <div>pipsays.fun</div>
+    <div class="fright">
+      <span>Open source. Every lesson on the chain.</span>
+      <a class="ghicon" data-gh href="#token" aria-label="Pip on GitHub" title="Pip on GitHub"><svg><use href="#gh"/></svg></a>
+      <a class="xlink" id="xLink" href="https://x.com/pipsaysfun" target="_blank" rel="noopener" aria-label="Pip on X" title="Pip on X"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M18.9 2H22l-7.6 8.7L23.3 22h-7l-5.5-7.2L4.5 22H1.4l8.1-9.3L1 2h7.2l5 6.6L18.9 2zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20z"/></svg></a>
+    </div>
+  </footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

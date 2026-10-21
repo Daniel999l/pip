@@ -1,0 +1,34 @@
+# dependencies
+node_modules/
+
+# secrets
+.env
+.env.*
+!.env.example
+scripts/local/local.env
+
+# archives and leftovers
+*.tgz
+*.tar
+*.tar.gz
+*.zip
+_to_delete/
+
+# internal design and working files
+SPEC.md
+brand/
+preview/
+research/
+test/review/
+test/.logs/
+test/.run/
+
+# local chain cache
+scripts/local/bin/
+cache/
+artifacts/
+
+# logs and os files
+*.log
+.DS_Store
+Thumbs.db
